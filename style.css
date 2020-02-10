@@ -27,14 +27,9 @@
 
 .icon-letterboxd:before {
   content: "\e907";
-  color: #00d735;
 }
 .icon-bandcamp1:before {
   content: "\e906";
-  color: #408294;
-}
-.icon-file-audio-o:before {
-  content: "\e905";
 }
 .icon-instagram:before {
   content: "\e900";
