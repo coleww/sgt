@@ -28,6 +28,13 @@ a {
   text-decoration: none;
 }
 
+@media only screen and (max-width: 700px) {
+  a {
+    margin: 1em;
+    font-size: 2em;
+  }
+}
+
 span {
   color: black !important;
   border-bottom:1px solid black;
