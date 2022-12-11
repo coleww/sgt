@@ -28,12 +28,19 @@ a {
   text-decoration: none;
 }
 
+hr {
+ width: 66.6%;
+  margin-top:6px;
+  border-color: gray;
+}
+
 @media only screen and (max-width: 700px) {
   a {
     margin: 1em;
     font-size: 2em;
   }
 }
+
 
 span {
   color: black !important;
