@@ -87,7 +87,7 @@
       function polyCalc() {
         console.log({origBpm, origBeats, targetBeats})
         if (isNaN(origBpm) || isNaN(origBeats) || isNaN(targetBeats) || origBpm <= 0 || origBeats <= 0 || targetBeats <= 0) {
-          result.textContent = 'BPM and beat ratio must be positive numbers'
+          result.textContent = ''
           return;
         };
 
@@ -120,14 +120,11 @@
         width: 32px;
         margin-bottom: 5px;
       }
-
-      header {
-        text-align: center;
-      }
-
       main, header, dialog {
-        width: fit-content;
+        width: 320px;
+        max-width: 320px;
         margin: 32px auto;
+        text-align: center;
       }
 
       form {
