@@ -53,6 +53,11 @@
       </div>
 
       Made by <a href="http://sadgaytechno.com">DJ Sad Gay Techno</a>
+
+      <br><br>
+      <br><br>
+      <br><br>
+      <br><br>
     </dialog>
 
 
@@ -86,8 +91,8 @@
           return;
         };
 
-        const faster = `${origBeats} beats at ${origBpm} bpm === ${targetBeats} beats at ${origBpm * targetBeats / origBeats} bpm`;
-        const slower = `${targetBeats} beats at ${origBpm} bpm === ${origBeats} beats at ${origBpm * origBeats / targetBeats} bpm`;
+        const faster = `${origBeats} x ${origBpm} bpm = ${targetBeats} x ${origBpm * targetBeats / origBeats} bpm`;
+        const slower = `${targetBeats} x ${origBpm} bpm = ${origBeats} x ${origBpm * origBeats / targetBeats} bpm`;
         result.textContent = `${faster}\n${slower}`
       }
 
@@ -112,12 +117,16 @@
 
     <style>
       input {
-        width: 50px;
+        width: 32px;
         margin-bottom: 5px;
       }
 
+      header {
+        text-align: center;
+      }
+
       main, header, dialog {
-        max-width: 480px;
+        width: fit-content;
         margin: 32px auto;
       }
 
