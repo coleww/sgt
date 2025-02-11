@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Polyrhythmic Loop Calculator</title>
+    <meta name="description" content="Calculates BPM and beat length for polyrhythmic looping or mixing">
+    <meta name="keywords" content="DJ tools, BPM math, looping, polyrhythms">
+    <meta name="author" content="DJ Sad Gay Techno">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./tool.ico"  type="image/x-icon">
+  </head>
+  <body>
+
+    <header>
+      <h1>Polyrhythmic Loop Calculator</h1>
+
+      <button id="modal-open">What is this?</button>
+
+
+      
+    </header>
+    <main>
+        <form>
+          <label>BPM: <input type="text" id="poly-bpm" value="120"/></label>
+          <br>
+          <label>Ratio: <input type="text" id="poly-beats" value="3"/> / <input type="text" id="poly-target" value="4"/></label>
+          <pre id="result"></pre>
+        </form>
+
+    </main>
+
+
+
+    <footer>
+      <a href="http://sadgaytechno.com">home</a>
+    </footer>
+
+    <dialog id="modal">
+      <button autofocus id="modal-close">Close</button>
+      <br>
+      <br>
+      Calculates BPM/beat length ratios for creating <a href="https://en.wikipedia.org/wiki/Polyrhythm" target="_blank">polyrhythmic</a> loops/blends. i.e, <a href="https://www.youtube.com/watch?v=Vd28AO5j81s" target="_blank"></a>a 3 bar loop over a 4 bar loop</a>.
+      <br>
+      <br>
+      <div>
+        CDJ/XDJ make it easy to auto loop even numbered beat lengths on the fly, but you need to get creative to make perfect odd beat length loops. 
+        <ul>
+          <li>Use 3 repeats of a 1 beat auto loop instead of a 3 beat loop</li>
+          <li>Use 4 repeats of a 3/4 slip loop instead of a 3 beat loop</li>
+          <li>A shorter loop length on the even numbered beat can also make things easier, for example using a 2 beat loop instead of a 4 beat loop to avoid a snare on the 3rd beat that clashes with the triplets</li>
+          <li>In Rekordbox use Quantize and Active Loop to set a perfect 3 (or 6, 9, etc.) beat loop that will automatically trigger at your mix out point</li>
+          <li>Or make an edit of the track: use stem separation to remove elements that clash with the blend, cycle through different 3 beat loops, add tempo FX to emphasize the BPM shift, add little polyrhythmic flourishes to the start of the track to tease the tempo change</li>
+          <li>For mixing in a track, use quantize and manual loop in/out on CDJ/XDJ to create a perfect 3 beat loop on the fly</li>
+          <li>Using tempo FX on one or both tracks can help smooth things over</li> 
+        </ul>
+      </div>
+    </dialog>
+
+
+    <script type="text/javascript">
+
+      const dialog = document.getElementById("modal");
+      const showButton = document.getElementById("modal-open");
+      const closeButton = document.getElementById("modal-close");
+
+      showButton.addEventListener("click", () => {
+        dialog.showModal();
+      });
+      
+      // "Close" button closes the dialog
+      closeButton.addEventListener("click", () => {
+        dialog.close();
+      });
+    </script>
+
+    <script type="text/javascript">
+      var result = document.getElementById('result');
+      var origBpmIn = document.getElementById('poly-bpm');
+      var origBeatsIn = document.getElementById('poly-beats');
+      var targetBeatsIn = document.getElementById('poly-target');
+      var origBpm = 120, origBeats = 3, targetBeats = 4;
+      
+      function polyCalc() {
+        console.log({origBpm, origBeats, targetBeats})
+        if (isNaN(origBpm) || isNaN(origBeats) || isNaN(targetBeats) || origBpm <= 0 || origBeats <= 0 || targetBeats <= 0) {
+          result.textContent = 'BPM and beat ratio must be positive numbers'
+          return;
+        };
+
+        const faster = `${origBeats} beats at ${origBpm} bpm === ${targetBeats} beats at ${(origBpm * targetBeats) / origBeats} bpm`;
+        const slower = `${targetBeats} beats at ${origBpm} bpm === ${origBeats} beats at ${(origBpm * origBeats) / targetBeats} bpm`;
+        result.textContent = `${faster}\n${slower}`
+      }
+
+      origBpmIn.addEventListener('input', function (e) {
+        origBpm = parseFloat(e.target.value);
+        polyCalc();
+      });
+      
+      origBeatsIn.addEventListener('input', function (e) {
+        origBeats = parseFloat(e.target.value);
+        polyCalc();
+      });
+
+      targetBeatsIn.addEventListener('input', function (e) {
+        targetBeats = parseFloat(e.target.value);
+        polyCalc();
+      });
+
+      polyCalc();
+
+    </script>
+
+    <style>
+      input {
+        width: 50px;
+        margin-bottom: 5px;
+      }
+
+      main, header, dialog {
+        max-width: 480px;
+        margin: 32px auto;
+      }
+
+      form {
+        padding: 16px;
+        border: 1px solid darkblue; 
+        border-radius: 6px;
+      }
+
+      footer {
+        position:absolute; bottom: 48px; left: 50%;
+      }
+    </style>
+
+
+  </body>
+</html>
