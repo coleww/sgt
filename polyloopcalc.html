@@ -15,8 +15,6 @@
       <h1>Polyrhythmic Loop Calculator</h1>
 
       <button id="modal-open">What is this?</button>
-
-
       
     </header>
     <main>
@@ -91,9 +89,12 @@
           return;
         };
 
-        const faster = `${origBeats} x ${origBpm} bpm = ${targetBeats} x ${origBpm * targetBeats / origBeats} bpm`;
-        const slower = `${targetBeats} x ${origBpm} bpm = ${origBeats} x ${origBpm * origBeats / targetBeats} bpm`;
-        result.textContent = `${faster}\n${slower}`
+        const fasterBpm = parseFloat((origBpm * targetBeats / origBeats).toFixed(3))
+        const slowerBpm = parseFloat((origBpm * origBeats / targetBeats).toFixed(3))
+
+        const faster = `${origBeats} x ${origBpm} bpm = ${targetBeats} x ${fasterBpm} bpm`;
+        const slower = `${targetBeats} x ${origBpm} bpm = ${origBeats} x ${slowerBpm} bpm`;
+        result.textContent = `${faster}\n\n${slower}`
       }
 
       origBpmIn.addEventListener('input', function (e) {
