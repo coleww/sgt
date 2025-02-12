@@ -1,0 +1,177 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Pitch slider calculator</title>
+    <meta name="description" content="Simple tempo/key calculator for DJs using pitch sliders">
+    <meta name="keywords" content="DJ tools, BPM math, vinyl record pitch slider">
+    <meta name="author" content="DJ Sad Gay Techno">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./tool.ico"  type="image/x-icon">
+  </head>
+  <body>
+
+    <header>
+      <h1>Pitch Slider Calculator</h1>
+
+      <button id="modal-open">What is this?</button>
+      
+    </header>
+    <main>
+        <div class="container">
+            <label>BPM: <input type="number" id="shifter-bpm"/></label>
+            <select name="key" id="shifter-key">
+              <option value="">key</option>
+              <option value="a">A</option>
+              <option value="a#">A#/Bb</option>
+              <option value="b">B</option>
+              <option value="c">C</option>
+              <option value="c#">C#/Db</option>
+              <option value="d">D</option>
+              <option value="d#">D#/Eb</option>
+              <option value="e">E</option>
+              <option value="f">F</option>
+              <option value="f#">F#/Gb</option>
+              <option value="g">G</option>
+              <option value="g#">G#/Ab</option>
+            </select>
+            <pre id="result"></pre>
+        </div>
+        <br><br>
+        <div class="container">
+          circle of fifths / relative major-minor pairs
+          <pre>
+...
+F major - D minor   
+C major - A minor 
+G major - E minor 
+D major - B minor 
+A major - F#/Gb minor 
+E major - C#/Db minor 
+B major - G#/Ab minor 
+F#/Gb major - D#/Eb minor 
+C#/Db major - A#/Bb minor 
+G#/Ab major - F minor 
+D#/Eb major - C minor 
+A#/Bb major - G minor 
+F major - D minor   
+C major - A minor 
+...
+          </pre>
+        </div>
+
+    </main>
+
+    <dialog id="modal">
+      <button autofocus id="modal-close">Close</button>
+      <br>
+      <br>
+      <section>
+        When you move the pitch slider on a turntable (or a CDJ with master tempo off) the key and tempo of the track both change accordingly. We can use some basic math to try find other tracks that might sync up rhythmically and harmonically if we pitch one or the other up or down. 
+
+        <pre>
+        +1 step +5.946% tempo
+        +2 step +12.246% tempo
+        -1 step -5.613% tempo
+        -2 step -10.910% tempo
+        </pre>
+
+        In theory if you have a track in C major at 120bpm, and a track in D flat major at 127bpm you might be able to play the first one faster or the second one slower in order to get them in roughly the same key and BPM. Or the relative major/minor could also work, for example a track in B flat minor at 127bpm could be used instead of one in D flat major. 
+
+      </section>
+
+      <br><br>
+      Made by <a href="http://sadgaytechno.com">DJ Sad Gay Techno</a>
+
+      <br><br>
+      <br><br>
+      <br><br>
+    </dialog>
+
+
+    <script type="text/javascript">
+
+      const dialog = document.getElementById("modal");
+      const showButton = document.getElementById("modal-open");
+      const closeButton = document.getElementById("modal-close");
+
+      showButton.addEventListener("click", () => {
+        dialog.showModal();
+      });
+      
+      // "Close" button closes the dialog
+      closeButton.addEventListener("click", () => {
+        dialog.close();
+      });
+    </script>
+
+    <script type="text/javascript">
+      var result = document.getElementById('result');
+      var bpmIn = document.getElementById('shifter-bpm');
+      var keyIn = document.getElementById('shifter-key');
+      var bpm, key;
+
+      var notes = ['a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#']
+
+      function moveNote(note, amt) {
+        var noteIndex = notes.indexOf(note)
+        var updatedIndex = noteIndex + amt;
+        if (updatedIndex >= notes.length) {
+          updatedIndex = updatedIndex - notes.length; 
+        } else if (updatedIndex < 0) {
+          updatedIndex = updatedIndex + notes.length;
+        }
+        return notes[updatedIndex];
+      }
+
+      function shiftCalc() {
+        if (!bpm || !key || bpm <= 0 || isNaN(bpm)) return;
+
+        result.textContent = `-10.910% ${(bpm * 0.87754).toFixed(3)} ${moveNote(key, -2)}
+        \n-5.613% ${(bpm * 0.94387).toFixed(3)} ${moveNote(key, -1)}
+        \n+5.946% ${(bpm * 1.05946).toFixed(3)} ${moveNote(key, 1)}
+        \n+12.246% ${(bpm * 1.10910).toFixed(3)} ${moveNote(key, 2)}`
+        
+      }
+
+
+      bpmIn.addEventListener('input', function (e) {
+        bpm = parseFloat(e.target.value);
+        shiftCalc();
+      });
+      
+      keyIn.addEventListener('change', function (e) {
+        key = e.target.value;
+        shiftCalc();
+      });
+
+      shiftCalc();
+
+    </script>
+
+    <style>
+      input, select {
+        width: 64px;
+        margin-bottom: 8px;
+        font-size: 16px;
+      }
+      main, header, dialog {
+        width: 320px;
+        max-width: 320px;
+        margin: 32px auto;
+        text-align: center;
+      }
+
+      .container {
+        padding: 16px;
+        border: 1px solid darkblue; 
+        border-radius: 6px;
+      }
+
+    </style>
+
+
+  </body>
+</html>
