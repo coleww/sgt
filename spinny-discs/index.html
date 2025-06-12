@@ -1,0 +1,106 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SPINNY DISCS</title>
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+  </head>
+  <body>
+    <main>
+      <div class="center">
+        <h1>SPINNY DISCS</h1>
+      </div>
+      <div class="center">
+        <div class="container">
+          <label>AUDIO: <input type="file" id="audio-select" /></label>
+          <label>DISC IMG: <input type="file" id="disc-img" /></label>
+          <label>BACKGROUND IMG: <input type="file" id="bg-img" /></label>
+          <label
+            >BACKGROUND COLOR: <input type="text" id="bg-color" value="black"
+          /></label>
+          <label
+            >TOP TEXT: <input type="text" id="label-text-top" value="spinny"
+          /></label>
+          <label
+            >BOTTOM TEXT:
+            <input type="text" id="label-text-bottom" value="discs"
+          /></label>
+          <label
+            >FONT: <input type="text" id="label-font" value="32px arial"
+          /></label>
+          <label
+            >TEXT COLOR: <input type="text" id="label-text-color" value="black"
+          /></label>
+          <label
+            >LABEL COLOR: <input type="text" id="label-color" value="#F0EAD6"
+          /></label>
+          <label
+            >SPINDLE COLOR:
+            <input type="text" id="spindle-color" value="slategray"
+          /></label>
+          <label
+            >ROTATE: <input type="checkbox" id="rotate-select" checked />
+          </label>
+          <div class="center">
+            <button id="button-preview">PREVIEW ANIMATION</button>
+          </div>
+          <div class="center">
+            <button id="button-download">DOWNLOAD VIDEO</button>
+          </div>
+          <div class="center">
+            <a href="#" id="modal-open">???</a>
+          </div>
+        </div>
+
+        <div class="container">
+          <canvas id="canvas" width="540" height="540"></canvas>
+        </div>
+      </div>
+
+      <div class="center">
+        Brought to you by
+        <a href="https://sadgaytechno.com/">dj sad gay techno</a>
+      </div>
+
+      <div id="loading-overlay" class="loading">
+        <div class="loading-spinner"></div>
+      </div>
+
+      <dialog id="modal">
+        <button autofocus id="modal-close">Close</button>
+        <ul>
+          <li>
+            Rendering should be pretty quick for short clips, may take a while
+            to render full songs.
+          </li>
+          <li>
+            Generated video is 1080x1080 with 128kbps audio because that's what
+            IG does.
+          </li>
+          <li>
+            Color fields take any hex code (like #BEEFDAD) OR a
+            <a
+              href="https://www.w3schools.com/tags/ref_colornames.asp"
+              target="_blank"
+              >CSS color name</a
+            >.
+          </li>
+          <li>
+            Font fields should be formatted like `FONT_SIZE FONT_NAME`, any font
+            that your web browser can render should work.
+          </li>
+          <li>
+            Setting the background img clears the background color and vice
+            versa.
+          </li>
+          <li>
+            Some options can be omitted by deleting their input (top text,
+            bottom text, label, spindle).
+          </li>
+        </ul>
+      </dialog>
+    </main>
+    <script src="bundle.js"></script>
+  </body>
+</html>
