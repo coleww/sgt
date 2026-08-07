@@ -10,20 +10,13 @@ div {
 }
 
 h1 {
-
+  font-size: 3em;
 }
 
-h2 {
-  margin: 1em 0;
-}
-
-p {
-  font-size: 1.5em;
-}
 
 a {
   display: inline-block;
-  font-size: 1.25em;
+  font-size: 2em;
   margin: 0.5em 1em;
   text-decoration: none;
 }
@@ -37,7 +30,7 @@ hr {
 @media only screen and (max-width: 700px) {
   a {
     margin: 1em;
-    font-size: 2em;
+    font-size: 2.5em;
   }
 }
 
