@@ -1,5 +1,4 @@
 body {
-  font-family: "Comic Sans MS", cursive, sans-serif;
   text-align: center;
   color: #292929;
   background-color: #f7f7f7;
@@ -13,12 +12,30 @@ h1 {
   font-size: 3em;
 }
 
+#main-links {
+  width: fit-content;
+  margin: 4em auto;
+}
 
-a {
-  display: inline-block;
+#main-links a {
+  display: block;
   font-size: 2em;
   margin: 0.5em 1em;
   text-decoration: none;
+  text-align: left;
+  border: 1px solid #292929;
+  padding: 0.5em;
+  border-radius: 10px;
+}
+
+#spotlight {
+  border: 1px solid #292929;
+  padding: 2em;
+  border-radius: 10px;
+}
+
+#spotlight a {
+
 }
 
 hr {
