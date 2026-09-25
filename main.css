@@ -5,8 +5,8 @@ body {
 }
 
 
-h1 {
-  font-size: 3em;
+h1, h2, h3 {
+  margin: 0.25em;
 }
 
 #main-links {
@@ -40,7 +40,7 @@ ul {
 
 #spotlight p {
   font-size: 1.5em;
-  margin: 0.5em;
+  margin: 0.25em;
 }
 
 hr {
